@@ -2,15 +2,19 @@ import React, {useState, useEffect}from 'react';
 import {Link, useNavigate } from 'react-router-dom';
 import { IoMdAdd, IoMdSearch, IoIosNotificationsOutline } from 'react-icons/io';
 import {BsDot} from 'react-icons/bs'
-import {doc, serverTimestamp, setDoc, getFirestore, collection, getDocs, orderBy, query,getDoc, where, updateDoc, limit, Firestore} from "firebase/firestore"
+import {doc, getFirestore, collection, getDocs, orderBy, query,getDoc, where, updateDoc } from "firebase/firestore"
 
 
 const Navbar = ({searchTerm, setSearchTerm, user }) => {
-  
   const navigate = useNavigate({ user });
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const [userProfile, setUserProfile] = useState(localStorage.getItem('photoURL'))
+  const [userProfile, setUserProfile] = useState('')
   const [userNotifications, setUserNotifications] = useState([])
+
+  useEffect(() => {
+    setUserProfile(localStorage.getItem('photoURL'))
+  }, [])
+  
 
   useEffect(() => {
     getUSersNotificationDetails()
@@ -105,14 +109,8 @@ const Navbar = ({searchTerm, setSearchTerm, user }) => {
             className="bg-fuchsia-700 hover:bg-fuchsia-600 text-white rounded-lg w-12 h-12 md:w-14 md:h-12 flex justify-center items-center "
           >
             <IoMdAdd onClick={()=> setIsModalOpen(true)}/>
-            
           </Link>
-
       </div>
-
-      
-
-
     </div>
   )
 }

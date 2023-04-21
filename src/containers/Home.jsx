@@ -20,18 +20,21 @@ const Home = () => {
   const logo = 'https://firebasestorage.googleapis.com/v0/b/tcuhub-cf9e1.appspot.com/o/images%2Fcs_allumni_logo.png?alt=media&token=53c943cb-7aed-449e-b370-fc294bd29f84';
   const [role, setRole] = useState(null)
 
-  useEffect(async () => {
-    const docRef = doc(getFirestore(), "users", `${localStorage.getItem('uid')}`);
-    const docSnap = await getDoc(docRef);
-    if (docSnap.exists()) {
-        setRole(docSnap.data().role)
-        if(docSnap.data().verified === false || docSnap.data().verified === undefined || docSnap.data().verified === ''){
-          navigate('/landingpage')
-        }
-    } else {
-        console.log('User does not exist')
+  useEffect(() => {
+    const getUserRole = async () => {
+      const docRef = doc(getFirestore(), "users", `${localStorage.getItem('uid')}`);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+          setRole(docSnap.data().role)
+          if(docSnap.data().verified === false || docSnap.data().verified === undefined || docSnap.data().verified === ''){
+            navigate('/landingpage')
+          }
+      } else {
+          console.log('User does not exist')
+      }
     }
-  }, [])
+    getUserRole()
+  }, [navigate])
   
 
   const scrollRef = useRef(null);
@@ -43,7 +46,7 @@ const Home = () => {
     if(userProfile === null || userProfile === ''){
       setUserProfile(defaultProfile)
     }
-  }, [])
+  }, [userProfile])
 
   if(user === null || user === undefined || user === '') {
     navigate('/login')
@@ -84,7 +87,6 @@ const Home = () => {
             <Route path='/user-profile/:uid' element={<UserProfile />}/>
             <Route path='/*' element={<Posts/>}/>
             <Route path='/search' element={<Search />}/>
-            
           </Routes>
         </div>      
       

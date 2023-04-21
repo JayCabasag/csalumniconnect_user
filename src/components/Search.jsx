@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import {IoMdSearch} from 'react-icons/io'
-import {doc, getFirestore, deleteDoc, where, collection, getDocs, getDoc, orderBy, query, limit, documentId, exists, updateDoc, Timestamp, setDoc, addDoc, serverTimestamp, increment} from "firebase/firestore"
+import { getFirestore, where, collection, getDocs, orderBy, query, limit } from "firebase/firestore"
 import Masonry from 'react-masonry-css';
-import Post from './Post';
+import { useDebounce, useDebouncedCallback } from 'use-debounce';
 
 const Search = () => {
   
@@ -18,17 +18,34 @@ const Search = () => {
   };
 
   useEffect(() => {
-    getResult()
+    const getInitialResult = async () => {
+
+      setSearchResults([])
+      
+      const arrayOfTerm = searchTerm.split(" ")
+      
+      for(var i=0;i<arrayOfTerm.length;i++){
+        arrayOfTerm[i]="#"+arrayOfTerm[i];
+      }
+  
+      setFinalSearchTerm(arrayOfTerm)
+  
+      const queryToOrder = query(collection(getFirestore(), "posts"), where('reviewed', '==', true), orderBy('ticks', 'desc'));
+      const querySnapshot = await getDocs(queryToOrder, collection(getFirestore(), "posts"), orderBy("ticks"), orderBy("ticks", "desc"), limit(250));
+      var returnArr = [];
+      querySnapshot.forEach((doc) => {
+        var item = doc.data();
+        returnArr.push(item);
+      })  
+  
+      setSearchResults(returnArr)
+      setTotalResults(returnArr.length)
+    }
+  
+    getInitialResult()
   }, [searchTerm])
   
-
-
-  const changeValue = (e) => {
-    setSearchTerm(e)
-  }
-  
   const getResult = async () => {
-
     setSearchResults([])
     
     const arrayOfTerm = searchTerm.split(" ")
@@ -49,25 +66,27 @@ const Search = () => {
 
     setSearchResults(returnArr)
     setTotalResults(returnArr.length)
+  }
   
+  const debouncedSearch = useDebouncedCallback(
+    (value) => {
+      setSearchTerm(value)
+    },
+    1500
+  );
+  const changeValue = (e) => {
+    debouncedSearch(e)
   }
 
-
-  searchResults.map((post) =>{
+  searchResults.map((post) => {
     for(let i = 0; i < finalSearchTerm.length; i++) {
-      // Loop for array2
       for(let j = 0; j < post.tags.length; j++) {
-              // Compare the element of each and
-              // every element from both of the
-              // arrays
               if(finalSearchTerm[i] === post.tags[j]) {
-                  // Return if common element found
                   return post["show"] = true;
               } 
           }
       }
-      // Return if no common element exist
-      post["show"] = false;
+      return post["show"] = false;
   })
 
 

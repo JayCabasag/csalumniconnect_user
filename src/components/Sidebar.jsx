@@ -1,17 +1,21 @@
 import React, {useEffect, useState} from 'react'
 import { NavLink, Link } from 'react-router-dom';
 import { RiHomeFill } from 'react-icons/ri';
-import defaultProfile from '../assets/defaultimg.png'
-import { collection, query, where, getDocs, getFirestore } from "firebase/firestore";
-
 
 const isNotActiveStyle = 'flex items-center px-5 gap-3 text-gray-500 hover:text-black transition-all duration-200 ease-in-out capitalize';
 const isActiveStyle = 'flex items-center px-5 gap-3 font-extrabold border-r-2 border-black transition-all duration-200 ease-in-out capitalize';
 
 const Sidebar = ({ user, closeToggle }) => {
 
-  const [userFullname, setUserFullname] = useState(localStorage.getItem('name'))
-  const [userProfile, setUserProfile] = useState(localStorage.getItem('photoURL'))
+  const [userFullname, setUserFullname] = useState('')
+  const [userProfile, setUserProfile] = useState('')
+
+  useEffect(() => {
+    setUserFullname(localStorage.getItem('name'))
+    setUserProfile(localStorage.getItem('photoURL'))
+  }, [])
+  
+
   const logo = 'https://firebasestorage.googleapis.com/v0/b/tcuhub-cf9e1.appspot.com/o/images%2Fcs_allumni_logo.2.png?alt=media&token=7f0e6012-7b96-416e-a73a-3ba10c6d78ea';
 
   const handleCloseSidebar = () => {

@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useRef} from 'react'
-import {doc, serverTimestamp, setDoc, getFirestore, collection, getDocs, orderBy, query,getDoc, where, updateDoc, limit} from "firebase/firestore"
+import {doc, serverTimestamp, setDoc, getFirestore, collection, getDocs, orderBy, query,getDoc, where, updateDoc } from "firebase/firestore"
 import Modal from 'react-modal/lib/components/Modal'
 import moment from 'moment'
 import {AiOutlineArrowLeft} from 'react-icons/ai'
@@ -9,7 +9,6 @@ const Admin = () => {
 
   const [adminLists, setAdminLists] = useState([])
   const [userMessagesChannel, setUserMessagesChannel] = useState([])
-  const [allMessages, setAllMessages] = useState([])
   const [totalMessages, setTotalMessages] = useState(0)
   
   const uid = localStorage.getItem('uid')
