@@ -1,8 +1,8 @@
-import React, {useState, useEffect, useRef} from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import React, {useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Spinner from './Spinner';
 import MasonryLayout from './MasonryLayout';
-import {doc, getFirestore, collection, getDocs, getDoc, orderBy, query, limit, updateDoc, where} from "firebase/firestore"
+import {doc, getFirestore, collection, getDocs, getDoc, orderBy, query, limit, where} from "firebase/firestore"
 
 const Feed = () => {
   

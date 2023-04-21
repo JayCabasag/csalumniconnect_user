@@ -1,13 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { HiMenu } from 'react-icons/hi';
 import { AiFillCloseCircle } from  'react-icons/ai';
-import {Link, Navigate, Route, Routes, useNavigate} from 'react-router-dom';
+import {Link, Route, Routes, useNavigate} from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
 import UserProfile from '../components/UserProfile'
 import Posts from './Posts'
 import defaultProfile from '../assets/defaultimg.png'
 import Search from '../components/Search';
-import { setDoc, doc, getFirestore, collection, query, where, orderBy, getDocs, getDoc, addDoc, updateDoc} from "firebase/firestore"
+import { doc, getFirestore, getDoc } from "firebase/firestore"
 
 
 const Home = () => {

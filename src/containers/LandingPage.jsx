@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import { setDoc, doc, getFirestore, collection, query, where, orderBy, getDocs, getDoc, addDoc, updateDoc} from "firebase/firestore"
-import {onAuthStateChanged, signOut, updateProfile  } from 'firebase/auth'
+import { doc, getFirestore, getDoc, updateDoc} from "firebase/firestore"
+import { signOut,  } from 'firebase/auth'
 import { auth } from '../firebase-config'
 import { useNavigate } from 'react-router-dom';
 import UserEmploymentLandingPage from '../components/UserEmploymentLandingPage';
