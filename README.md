@@ -1,70 +1,76 @@
-# Getting Started with Create React App
+# CS Alumni Connect User
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to CS Alumni Connect User! This is a web application built using Create React App. It aims to connect computer science alumni and provide a platform for networking and collaboration.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- User authentication: Users can create an account, log in, and manage their profile.
+- Alumni directory: Users can search and view profiles of other alumni.
+- Messaging system: Users can send messages to other alumni and engage in conversations.
+- Notifications: Users receive notifications for new messages and updates.
+- Event management: Users can create, view, and join events organized by the community.
 
-### `npm start`
+## Installation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+To run this project locally, you need to have Node.js and npm (Node Package Manager) installed on your machine.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. Clone the repository:
 
-### `npm test`
+```bash
+git clone https://github.com/JayCabasag/csalumniconnect_user.git
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. Navigate to the project directory:
 
-### `npm run build`
+```bash
+cd csalumniconnect_user
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. Install the dependencies:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+npm install
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+4. Start the development server:
 
-### `npm run eject`
+```bash
+npm start
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+The application will be running at [http://localhost:3000](http://localhost:3000) in your browser.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Configuration
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+The application requires configuration for authentication and database connectivity. You need to provide the necessary configuration values in a `.env` file in the project root directory. Create a `.env` file and add the following variables:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```
+REACT_APP_API_BASE_URL=YOUR_API_BASE_URL
+REACT_APP_FIREBASE_API_KEY=YOUR_FIREBASE_API_KEY
+REACT_APP_FIREBASE_AUTH_DOMAIN=YOUR_FIREBASE_AUTH_DOMAIN
+REACT_APP_FIREBASE_PROJECT_ID=YOUR_FIREBASE_PROJECT_ID
+```
 
-## Learn More
+Replace `YOUR_API_BASE_URL` with the base URL of your backend API (if applicable). For authentication, you need to set up a Firebase project and obtain the API key, auth domain, and project ID. Replace `YOUR_FIREBASE_API_KEY`, `YOUR_FIREBASE_AUTH_DOMAIN`, and `YOUR_FIREBASE_PROJECT_ID` with your Firebase configuration values.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Deployment
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+To deploy the application to a production environment, you can use the following command:
 
-### Code Splitting
+```bash
+npm run build
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+This will create an optimized production build in the `build` directory. You can then deploy the contents of this directory to a static hosting service or a server of your choice.
 
-### Analyzing the Bundle Size
+## Contributing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request in this repository.
 
-### Making a Progressive Web App
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+This project is licensed under the [MIT License](LICENSE).
 
-### Advanced Configuration
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Please note that this is a generic README template, and you may need to modify it to fit the specific details of your project.
